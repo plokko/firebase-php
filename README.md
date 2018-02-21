@@ -98,7 +98,9 @@ $sa->setCacheHandler($handler);
 ```
 
 ### FCM
-wip
+This package implements FCM Http v1 Api
+
+
 ### Realt time database 
 wip
 
