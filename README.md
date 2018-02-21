@@ -31,69 +31,10 @@ Accepted methods for the constructor are:
 - array: php-translated array of the service account content
 
 You can also add a token cache handler via the `setCacheHandler` method that accepts an implementation of `CacheItemPoolInterface` to allow custom cache integrations.
+
+see [google/auth MemoryCacheItemPool](https://github.com/google/google-auth-library-php/blob/master/src/Cache/MemoryCacheItemPool.php) for an example implementation:
 ```php
-//NOTE: this is just an example, not a real implementation
-class MyCustomCache implements \Psr\Cache\CacheItemPoolInterface{
-    private
-        $cache=[];
-    
-    public function getItem($key)
-    {
-        if(!isset($this->cache[$key]))
-            throw new InvalidArgumentException("Item $key not found in cache!");
-        return $this->cache[$key];
-    }
-    public function getItems(array $keys = array())
-    {
-        $data = [];
-        foreach($keys AS $k){
-            $data[$k] = $this->getItem($k);
-        }
-        return $data;
-    }
-
-    public function hasItem($key)
-    {
-        return isset($this->cache[$key]);
-    }
-
-    public function clear()
-    {
-        $this->cache=[];
-    }
-
-    public function deleteItem($key)
-    {
-        unset($this->cache[$key]);
-    }
-
-    public function deleteItems(array $keys)
-    {
-        foreach ($keys AS $k){
-            $this->deleteItem($k);
-        }
-    }
-
-    public function save(\Psr\Cache\CacheItemInterface $item)
-    {
-        $this->cache[$item->getKey()] = $item;
-        return true;
-    }
-
-
-    public function saveDeferred(\Psr\Cache\CacheItemInterface $item)
-    {
-        $this->save($item);
-        return true;
-    }
-
-    public function commit()
-    {
-        return true;
-    }
-}
-
-$handler = new MyCustomCache();
+$handler = new Google\Auth\Cache\MemoryCacheItemPool\MemoryCacheItemPool();
 $sa->setCacheHandler($handler);
 ```
 
