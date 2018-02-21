@@ -10,7 +10,7 @@ $serviceCredentials = $baseDir.'/serviceAccountCredentials.json';
 
 $sa = new ServiceAccount($serviceCredentials);
 
-
+// NOTE: RemoteConfig API is still NOT AVAILABLE: this is just a stub!
 $config = new RemoteConfig($sa);
 $config->setDebug(true);
 

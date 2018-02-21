@@ -1,4 +1,3 @@
 vendor
 .idea
 serviceAccountCredentials.json
-example.php
