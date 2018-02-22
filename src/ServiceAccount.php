@@ -1,6 +1,7 @@
 <?php
 namespace Plokko\Firebase;
 
+use Firebase\JWT\JWT;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use GuzzleHttp\ClientInterface;
@@ -72,13 +73,60 @@ class ServiceAccount
      * Return the Firebase project id
      * @return string
      */
-    function getProjectId(){
+    public function getProjectId(){
         if(empty($this->authConfig['project_id'])){
             throw new UnexpectedValueException('project_id not found in auth config file!');
         }
         return $this->authConfig['project_id'];
     }
 
+    /**
+     * Get the client_email service account filed
+     * @return string
+     */
+    public function getClientEmail(){
+        return $this->authConfig['client_email'];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getPrivateKey(){
+        return $this->authConfig['private_key'];
+    }
+
+    /**
+     * Encode a JWT token
+     * @param string $uid Unique id
+     * @param array $claims array of optional claims
+     * @return string
+     */
+    public function encodeJWT($uid,array $claims=[]){
+        $clientEmail = $this->getClientEmail();
+
+        $now = time();
+        $payload = [
+            'iss'   => $clientEmail,
+            'sub'   => $clientEmail,
+            'aud'   => 'https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit',
+            'iat'   => $now,
+            'exp'   => $now+3600,
+            'uid'   => $uid,
+            'claims'=> $claims,
+        ];
+
+        return JWT::encode($payload, $this->getPrivateKey(), 'RS256');
+    }
+
+    /**
+     * Decode a Firebase JWT
+     * @param string $jwt JWT string
+     * @param string $public_key Public key
+     * @return object
+     */
+    function decodeJWT($jwt,$public_key){
+        return JWT::decode($jwt,$public_key,['RS256']);
+    }
 
     function setCacheHandler(CacheItemPoolInterface $cache){
         $this->cache = $cache;
