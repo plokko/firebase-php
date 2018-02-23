@@ -22,7 +22,7 @@ use UnexpectedValueException;
  * @property AndroidConfig $android Android specific options for messages sent through FCM connection server.
  * @property WebpushConfig $webpush Webpush protocol options.
  * @property ApnsConfig $apns Apple Push Notification Service specific options.
- *
+ * @property Target $target
  */
 class Message implements JsonSerializable {
     private
@@ -72,6 +72,41 @@ class Message implements JsonSerializable {
         return $this->{$name};
     }
 
+    function __set($k,$v){
+        switch($k){
+            case 'data':
+                $this->data = $v==null||$v instanceof Data?$v:new Data($v);
+                return;
+            case 'notification':
+                if($v!==null&& !$v instanceof Notification )
+                    break;
+                $this->notification = $v;
+                return;
+            case 'android':
+                if($v!==null && !$v instanceof AndroidConfig)
+                    break;
+                $this->android = $v;
+                return;
+            case 'webpush':
+                if($v!==null && !$v instanceof WebpushConfig)
+                    break;
+                $this->webpush = $v;
+                return;
+            case 'apns':
+                if($v!==null && !$v instanceof ApnsConfig )
+                    break;
+                $this->apns = $v;
+                return;
+            case 'target':
+                if($v!==null && !$v instanceof Target)
+                    break;
+                $this->target = $v;
+                return;
+            default:
+
+        }
+        throw new UnexpectedValueException('Invalid value type for propriety '.$k);
+    }
 
     function setTarget(Target $target){
         $this->target = $target;
