@@ -2,8 +2,7 @@
 Php implementation of Firebase API.
 
 ## Why
-There are othe package that implements Firebase services but they are not using the latest API or over-complicated;
-this package is built to be simple, scalable and configurable to allow easy integration in other packages or frameworks.
+This package is built to be simple, scalable and configurable to allow easy integration in other packages or frameworks (ex: [laravel-firebase](https://github.com/plokko/laravel-firebase) ).
 
 This package uses `google/auth` to generate OAuth2.0 tokens from the service account and `guzzlehttp/guzzle` as http library.
 ## Install
