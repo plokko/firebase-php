@@ -11,7 +11,7 @@ Install it with composer via
 `composer require plokko\firebase-php`
 
 ## Usage
-
+All the calls on the API are made using a Firebase OAuth2.0 token, this token is generated using your ServiceAccount informations.
 ### Service Account
 To use the API you need to authenticate the requests with your service account:
 this is done by the `ServiceAccount` class that uses your Firebase ServiceAccount json credential file.
@@ -39,8 +39,10 @@ $sa->setCacheHandler($handler);
 
 ### FCM
 This package implements FCM Http v1 Api
+[see FCM docs](docs/FCM.md)
 
 
 ### Realt time database 
-wip
+This package includes the Firebase Real time database API integration
 
+[see Real time database docs](docs/DB.md)
