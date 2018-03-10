@@ -39,10 +39,10 @@ $sa->setCacheHandler($handler);
 
 ### FCM
 This package implements FCM Http v1 Api
+
 [see FCM docs](docs/FCM.md)
 
-
-### Realt time database 
+### Real time database 
 This package includes the Firebase Real time database API integration
 
 [see Real time database docs](docs/DB.md)
