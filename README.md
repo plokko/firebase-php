@@ -8,7 +8,7 @@ This package uses `google/auth` to generate OAuth2.0 tokens from the service acc
 ## Install
 Install it with composer via 
 
-`composer require plokko\firebase-php`
+`composer require plokko/firebase-php`
 
 ## Usage
 All the calls on the API are made using a Firebase OAuth2.0 token, this token is generated using your ServiceAccount informations.
