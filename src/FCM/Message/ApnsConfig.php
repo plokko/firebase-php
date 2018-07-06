@@ -2,6 +2,8 @@
 
 namespace Plokko\Firebase\FCM\Message;
 
+use JsonSerializable;
+
 /**
  * Class ApnsConfig
  * @package Plokko\Firebase\FCM\Message
@@ -9,7 +11,7 @@ namespace Plokko\Firebase\FCM\Message;
  * @property array $headers
  * @property ApnsNotification $payload
  */
-class ApnsConfig
+class ApnsConfig implements JsonSerializable
 {
     private
         /** @var array **/

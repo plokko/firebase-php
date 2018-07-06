@@ -2,7 +2,18 @@
 
 namespace Plokko\Firebase\FCM\Message;
 
-class ApnsAlertConfig
+use JsonSerializable;
+
+/**
+ * Class ApnsAlertConfig
+ * @package Plokko\Firebase\FCM\Message
+ *
+ * Representation of "alert" property
+ * on apple notification.
+ *
+ * @see https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html
+ */
+class ApnsAlertConfig implements JsonSerializable
 {
     private
         /** @var string **/
