@@ -5,7 +5,8 @@ namespace Plokko\Firebase\FCM\Message;
 /**
  * Class ApnsConfig
  * @package Plokko\Firebase\FCM\Message
- *
+ * @see https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig
+ 
  * @property array $headers
  * @property ApnsNotification $payload
  */
