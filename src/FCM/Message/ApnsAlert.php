@@ -5,15 +5,12 @@ namespace Plokko\Firebase\FCM\Message;
 use JsonSerializable;
 
 /**
- * Class ApnsAlertConfig
+ * Apns alert implementation, used in ApnsPayload
  * @package Plokko\Firebase\FCM\Message
  *
- * Representation of "alert" property
- * on apple notification.
- *
- * @see https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html
+ * @see https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html#//apple_ref/doc/uid/TP40008194-CH17-SW5
  */
-class ApnsAlertConfig implements JsonSerializable
+class ApnsAlert implements JsonSerializable
 {
     private
         /** @var string **/
@@ -39,6 +36,12 @@ class ApnsAlertConfig implements JsonSerializable
 
         /** @var string **/
         $launch_image;
+
+    function __construct($title='',$body='')
+    {
+        $this->title = $title;
+        $this->body = $body;
+    }
 
     function __get($k)
     {

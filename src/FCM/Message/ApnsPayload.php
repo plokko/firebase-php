@@ -4,14 +4,14 @@ namespace Plokko\Firebase\FCM\Message;
 use JsonSerializable;
 
 /**
- * Class ApnsNotification
- * @package Plokko\PhpFcmV1\Message
- * @see https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#ApnsConfig
+ * ApnsConfig payload
+ * @package Plokko\Firebase\FCM\Message
+ * @see https://goo.gl/32Pl5W
  */
-class ApnsNotification implements JsonSerializable
+class ApnsPayload implements JsonSerializable
 {
     public
-        /** @var ApnsAlertConfig|string */
+        /** @var ApnsAlert|string */
         $alert,
 
         /** @var int */
@@ -29,13 +29,14 @@ class ApnsNotification implements JsonSerializable
         /** @var string */
         $thread_id;
 
-    public function __construct()
+    function __get($k)
     {
-        /**
-         * ApnsAlertConfig by default, but string
-         * value is also valid.
-         */
-        $this->alert = new ApnsAlertConfig();
+        return $this->{$k};
+    }
+
+    function __set($k, $v)
+    {
+        $this->{$k}=$v;
     }
 
     public function jsonSerialize()

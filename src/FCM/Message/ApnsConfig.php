@@ -8,24 +8,26 @@ use JsonSerializable;
  * Class ApnsConfig
  * @package Plokko\Firebase\FCM\Message
  * @see https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig
- 
  * @property array $headers
- * @property ApnsNotification $payload
+ * @property ApnsPayload $payload
  */
 class ApnsConfig implements JsonSerializable
 {
     private
-        /** @var array **/
-        $headers,
+        /**
+         * @var array HTTP request headers defined in Apple Push Notification Service. Refer to APNs request headers for supported headers, e.g. "apns-priority": "10".
+         * @see https://goo.gl/C6Yhia
+         **/
+        $headers=[],
 
-        /** @var ApnsNotification **/
+        /** @var ApnsPayload **/
         $payload;
 
     function __get($k)
     {
         if ($k === 'payload') {
             if (!$this->payload) {
-                $this->payload = new ApnsNotification();
+                $this->payload = new ApnsPayload();
             }
         }
 
