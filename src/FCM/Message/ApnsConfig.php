@@ -3,6 +3,7 @@
 namespace Plokko\Firebase\FCM\Message;
 
 use JsonSerializable;
+use Plokko\Firebase\FCM\Message\Apns\ApnsPayload;
 
 /**
  * Class ApnsConfig

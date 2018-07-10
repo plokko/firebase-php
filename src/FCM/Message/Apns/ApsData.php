@@ -1,43 +1,30 @@
 <?php
-namespace Plokko\Firebase\FCM\Message;
+
+namespace Plokko\Firebase\FCM\Message\Apns;
 
 use JsonSerializable;
 
 /**
- * ApnsConfig payload
- * @package Plokko\Firebase\FCM\Message
+ * Contains aps apple's reserved keywords for ApnsPayload
+ * @package Plokko\Firebase\FCM\Message\Apns
+ *
  * @see https://goo.gl/32Pl5W
  */
-class ApnsPayload implements JsonSerializable
+class ApsData implements JsonSerializable
 {
     public
         /** @var ApnsAlert|string */
         $alert,
-
         /** @var int */
         $badge,
-
         /** @var string */
         $sound,
-
         /** @var int */
         $content_available,
-
         /** @var string */
         $category,
-
         /** @var string */
         $thread_id;
-
-    function __get($k)
-    {
-        return $this->{$k};
-    }
-
-    function __set($k, $v)
-    {
-        $this->{$k}=$v;
-    }
 
     public function jsonSerialize()
     {

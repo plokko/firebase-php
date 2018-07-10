@@ -1,6 +1,6 @@
 <?php
 
-namespace Plokko\Firebase\FCM\Message;
+namespace Plokko\Firebase\FCM\Message\Apns;
 
 use JsonSerializable;
 
