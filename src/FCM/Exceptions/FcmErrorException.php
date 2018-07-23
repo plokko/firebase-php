@@ -59,7 +59,7 @@ abstract class FcmErrorException extends Exception
             return $e;
         }
 
-        $status = isset($json['error']['status']) ? $json['error']['status'] : '';
+        $status = $json['error']['status'];
         $code = isset($json['error']['code']) ? $json['error']['code'] : '';
         $message = isset($json['error']['message']) ? $json['error']['message'] : '';
         $details = isset($json['error']['details']) ? $json['error']['details'] : '';
