@@ -60,9 +60,9 @@ abstract class FcmErrorException extends Exception
         }
 
         $status = $json['error']['status'];
-        $code = isset($json['error']['code']) ? $json['error']['code'] : '';
-        $message = isset($json['error']['message']) ? $json['error']['message'] : '';
-        $details = isset($json['error']['details']) ? $json['error']['details'] : '';
+        $code = isset($json['error']['code']) ? $json['error']['code'] : 0;
+        $message = isset($json['error']['message']) ? $json['error']['message'] : null;
+        $details = isset($json['error']['details']) ? $json['error']['details'] : null;
 
         switch ($status){
             default:
