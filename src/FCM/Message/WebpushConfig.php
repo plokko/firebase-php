@@ -26,7 +26,7 @@ class WebpushConfig implements JsonSerializable
         /** @var WebPushNotification **/
         $notification,
 
-        /** @var array **/
+        /** @var WebpushFcmOptions **/
         $fcm_options;
 
     function __get($k)
