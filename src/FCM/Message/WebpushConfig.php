@@ -12,6 +12,7 @@ use JsonSerializable;
  * @property array $headers
  * @property array $data
  * @property WebPushNotification $notification
+ * @property WebpushFcmOptions $fcm_options
  */
 class WebpushConfig implements JsonSerializable
 {
@@ -23,13 +24,22 @@ class WebpushConfig implements JsonSerializable
         $data,
 
         /** @var WebPushNotification **/
-        $notification;
+        $notification,
+
+        /** @var WebpushFcmOptions **/
+        $fcm_options;
 
     function __get($k)
     {
         if ($k === 'notification') {
             if(!$this->notification) {
                 $this->notification = new WebPushNotification();
+            }
+        }
+
+        if ($k === 'fcm_options') {
+            if(!$this->fcm_options) {
+                $this->fcm_options = new WebpushFcmOptions();
             }
         }
 
@@ -47,6 +57,7 @@ class WebpushConfig implements JsonSerializable
             'headers'        => $this->headers,
             'data'           => $this->data,
             'notification'   => $this->notification,
+            'fcm_options'   => $this->fcm_options,
         ]);
     }
 }
