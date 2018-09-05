@@ -75,13 +75,9 @@ class Request
         try{
             $rq = $client->request('POST',$apiUrl,['json' => $payload]);
 
-            echo
-                "Result:\n status code:".$rq->getStatusCode()."\t".$rq->getReasonPhrase().
-                "\n--body--\n".$rq->getBody();
-
             $json = json_decode($rq->getBody(),true);
 
-            return ($json && isset($json['message']['name']))?$json['message']['name']:null;
+            return ($json && isset($json['name']))?$json['name']:null;//Returns the message id
 
         }catch(RequestException $e){
             throw FcmErrorException::cast($e);
