@@ -13,7 +13,7 @@ class RemoteConfig implements JsonSerializable
     {
         return [
             'conditions' => $this->conditions,
-            'parameters' => $this->parameters,
+            'parameters' =>  $this->parameters,
         ];
     }
 }

@@ -29,8 +29,6 @@ class RemoteConfig
         if(!$this->client){
             $this->client = $this->serviceAccount->authorize(
                     [
-                        'https://www.googleapis.com/auth/cloud-platform',
-                        'https://www.googleapis.com/auth/firebase',
                         'https://www.googleapis.com/auth/firebase.remoteconfig'
                     ],
                     new Client(['debug'=>$this->debug])
@@ -39,7 +37,7 @@ class RemoteConfig
         return $this->client;
     }
 
-    private function getUri($path,$validateOnly=false){
+    private function getUri( $path,$validateOnly=false){
         $query = ($validateOnly)?'?validateOnly=1':'';
         return $this->baseUrl.$query;
     }
