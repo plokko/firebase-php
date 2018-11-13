@@ -21,6 +21,8 @@ class ApsData implements JsonSerializable
         $sound,
         /** @var int */
         $content_available,
+        /** @var int */
+        $mutable_content,
         /** @var string */
         $category,
         /** @var string */
@@ -33,6 +35,7 @@ class ApsData implements JsonSerializable
             'badge' => $this->badge,
             'sound' => $this->sound,
             'content-available' => $this->content_available,
+            'mutable-content' => $this->mutable_content,
             'category' => $this->category,
             'thread-id' => $this->thread_id,
         ]);
