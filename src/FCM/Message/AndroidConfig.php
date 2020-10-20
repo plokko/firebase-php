@@ -19,8 +19,8 @@ use JsonSerializable;
 class AndroidConfig implements JsonSerializable
 {
     const
-        PRIORITY_NORMAL='NORMAL',
-        PRIORITY_HIGH='HIGH';
+        PRIORITY_NORMAL='normal',
+        PRIORITY_HIGH='high';
 
 
     private
