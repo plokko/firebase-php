@@ -52,6 +52,9 @@ abstract class FcmErrorException extends Exception
      */
     static function cast(RequestException $e){
         $response = $e->getResponse();
+        if (empty($response)){
+            return $e;
+        }
         $json = json_decode($response->getBody(),true);
 
         if(!$json || empty($json['error']['status'])){
