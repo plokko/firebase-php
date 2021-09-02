@@ -67,9 +67,7 @@ abstract class FcmErrorException extends Exception
         $message = isset($json['error']['message']) ? $json['error']['message'] : null;
         $details = isset($json['error']['details']) ? $json['error']['details'] : null;
 
-        switch ($status){
-            default:
-                return $e;
+        switch ($status){            
             case 'UNSPECIFIED_ERROR':
                 return new UnspecifiedErrorException($status,$code,$message,$details);
             case 'INVALID_ARGUMENT':
@@ -86,6 +84,10 @@ abstract class FcmErrorException extends Exception
                 return new UnavailableException($status,$code,$message,$details);
             case 'INTERNAL':
                 return new InternalException($status,$code,$message,$details);
+            case null:
+                return $e;
+            default:
+                return new UnspecifiedErrorException($status,$code,$message,$details);;
 
         }
     }
