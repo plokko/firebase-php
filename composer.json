@@ -5,9 +5,9 @@
     "license": "MIT",
     "require": {
         "php": ">=5.6",
-        "google/auth": "^1.2.1",
-        "guzzlehttp/guzzle": "^6.3",
-        "firebase/php-jwt": "^5.0"
+        "google/auth": "^1.19.0",
+        "guzzlehttp/guzzle": "^7.4.2",
+        "firebase/php-jwt": "^6.1.0"
     },
     "require-dev": {
 	},
