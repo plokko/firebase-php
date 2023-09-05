@@ -37,7 +37,7 @@ class ApnsAlert implements JsonSerializable
         /** @var string **/
         $launch_image;
 
-    function __construct($title='',$body='')
+    function __construct($title = '', $body = '')
     {
         $this->title = $title;
         $this->body = $body;
@@ -50,10 +50,10 @@ class ApnsAlert implements JsonSerializable
 
     function __set($k, $v)
     {
-        $this->{$k}=$v;
+        $this->{$k} = $v;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'title' => $this->title,

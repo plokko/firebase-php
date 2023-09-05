@@ -1,4 +1,5 @@
 <?php
+
 namespace Plokko\Firebase\FCM\Message;
 
 use JsonSerializable;
@@ -34,10 +35,16 @@ class AndroidNotification implements JsonSerializable
         /**@var array**/
         $title_loc_args;
 
-    function __get($k){return $this->{$k};}
-    function __set($k,$v){$this->{$k}=$v;}
+    function __get($k)
+    {
+        return $this->{$k};
+    }
+    function __set($k, $v)
+    {
+        $this->{$k} = $v;
+    }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'title' => $this->title,

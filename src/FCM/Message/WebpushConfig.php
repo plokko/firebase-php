@@ -32,13 +32,13 @@ class WebpushConfig implements JsonSerializable
     function __get($k)
     {
         if ($k === 'notification') {
-            if(!$this->notification) {
+            if (!$this->notification) {
                 $this->notification = new WebPushNotification();
             }
         }
 
         if ($k === 'fcm_options') {
-            if(!$this->fcm_options) {
+            if (!$this->fcm_options) {
                 $this->fcm_options = new WebpushFcmOptions();
             }
         }
@@ -48,10 +48,10 @@ class WebpushConfig implements JsonSerializable
 
     function __set($k, $v)
     {
-        $this->{$k}=$v;
+        $this->{$k} = $v;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'headers'        => $this->headers,

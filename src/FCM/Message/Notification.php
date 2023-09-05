@@ -1,4 +1,5 @@
 <?php
+
 namespace Plokko\Firebase\FCM\Message;
 
 use JsonSerializable;
@@ -16,25 +17,27 @@ class Notification implements JsonSerializable
         /**@var string The notification's body text.*/
         $body;
 
-    function __construct($title='',$body='')
+    function __construct($title = '', $body = '')
     {
         $this->title = $title;
         $this->body = $body;
     }
 
 
-    function setTitle($title){
+    function setTitle($title)
+    {
         $this->title = $title;
         return $this;
     }
 
-    function setBody($body){
+    function setBody($body)
+    {
         $this->body = $body;
         return $this;
     }
 
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'title' => $this->title,

@@ -1,4 +1,5 @@
 <?php
+
 namespace Plokko\Firebase\RemoteConfig\Models;
 
 use JsonSerializable;
@@ -9,7 +10,7 @@ class RemoteConfig implements JsonSerializable
         $conditions,
         $parameters;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'conditions' => $this->conditions,

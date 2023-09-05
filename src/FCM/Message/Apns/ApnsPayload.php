@@ -1,4 +1,5 @@
 <?php
+
 namespace Plokko\Firebase\FCM\Message\Apns;
 
 use JsonSerializable;
@@ -17,30 +18,30 @@ class ApnsPayload implements JsonSerializable
         $aps;
     private
         /**@var array Custom data for app (acme)**/
-        $app_data=[];
+        $app_data = [];
 
     function __get($k)
     {
-        if($k==='aps'){
-            if(!$this->aps)
+        if ($k === 'aps') {
+            if (!$this->aps)
                 $this->aps = new ApsData();
             return $this->aps;
         }
-        return array_key_exists($k,$this->app_data)?$this->app_data[$k]:null;
+        return array_key_exists($k, $this->app_data) ? $this->app_data[$k] : null;
     }
 
     function __set($k, $v)
     {
-        if($k==='aps'){
+        if ($k === 'aps') {
             throw new \InvalidArgumentException('aps is a reserved keyword');
         }
         $this->app_data[$k] = $v;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
-        return array_filter(array_merge($this->app_data,[
-            'aps'=>$this->aps,
+        return array_filter(array_merge($this->app_data, [
+            'aps' => $this->aps,
         ]));
     }
 }

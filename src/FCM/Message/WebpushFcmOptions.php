@@ -24,10 +24,10 @@ class WebpushFcmOptions implements JsonSerializable
 
     function __set($k, $v)
     {
-        $this->{$k}=$v;
+        $this->{$k} = $v;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'link' => $this->link,

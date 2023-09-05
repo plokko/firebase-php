@@ -1,4 +1,5 @@
 <?php
+
 namespace Plokko\Firebase\FCM\Message;
 
 use JsonSerializable;
@@ -18,7 +19,7 @@ class WebPushNotification implements JsonSerializable
         /**@var string**/
         $icon;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'title' => $this->title,

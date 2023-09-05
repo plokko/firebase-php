@@ -1,4 +1,5 @@
 <?php
+
 namespace Plokko\Firebase\FCM\Message;
 
 use InvalidArgumentException;
@@ -19,8 +20,8 @@ use JsonSerializable;
 class AndroidConfig implements JsonSerializable
 {
     const
-        PRIORITY_NORMAL='normal',
-        PRIORITY_HIGH='high';
+        PRIORITY_NORMAL = 'normal',
+        PRIORITY_HIGH = 'high';
 
 
     private
@@ -39,19 +40,21 @@ class AndroidConfig implements JsonSerializable
      * @param string $ttl Ttl expressed as string (ex: '3.5s')
      * @return $this
      */
-    function ttl($ttl){
-        $this->ttl=$ttl;
+    function ttl($ttl)
+    {
+        $this->ttl = $ttl;
         return $this;
     }
 
-    function __get($k){
-        switch($k){
+    function __get($k)
+    {
+        switch ($k) {
             case 'data':
-                if(!$this->data)
+                if (!$this->data)
                     $this->data = new Data();
                 break;
             case 'notification':
-                if(!$this->notification)
+                if (!$this->notification)
                     $this->notification = new AndroidNotification();
                 break;
             default:
@@ -59,14 +62,15 @@ class AndroidConfig implements JsonSerializable
         return $this->{$k};
     }
 
-    function __set($k,$v){
-        switch($k){
+    function __set($k, $v)
+    {
+        switch ($k) {
             case 'priority':
                 $this->setPriority($v);
                 break;
             default:
         }
-        $this->{$k}=$v;
+        $this->{$k} = $v;
     }
 
     /**
@@ -74,28 +78,31 @@ class AndroidConfig implements JsonSerializable
      * @throws InvalidArgumentException
      * @return AndroidConfig
      */
-    function setPriority($p){
-        switch ($p){
+    function setPriority($p)
+    {
+        switch ($p) {
             default:
                 throw new InvalidArgumentException('Invalid Android message priority!');
             case self::PRIORITY_NORMAL:
             case self::PRIORITY_HIGH:
-                $this->priority=$p;
+                $this->priority = $p;
         }
         return $this;
     }
 
-    function setPriorityHigh(){
+    function setPriorityHigh()
+    {
         $this->priority = self::PRIORITY_HIGH;
         return $this;
     }
 
-    function setPriorityNormal(){
+    function setPriorityNormal()
+    {
         $this->priority = self::PRIORITY_NORMAL;
         return $this;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'collapse_key'  => $this->collapse_key,

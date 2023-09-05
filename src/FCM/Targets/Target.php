@@ -1,5 +1,7 @@
 <?php
+
 namespace Plokko\Firebase\FCM\Targets;
+
 use JsonSerializable;
 use ReflectionClass;
 
@@ -21,8 +23,8 @@ abstract class Target implements JsonSerializable
         $this->value = $value;
     }
 
-    public function jsonSerialize(){
-        return [ strtolower((new ReflectionClass($this))->getShortName()) => $this->value ];
+    public function jsonSerialize(): mixed
+    {
+        return [strtolower((new ReflectionClass($this))->getShortName()) => $this->value];
     }
-
 }

@@ -5,14 +5,12 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "psr/cache": "^1|^2|^3",
-        "google/auth": "^1.21.0",
+        "psr/cache": "^1.0||^2.0||^3.0",
+        "google/auth": "^1.29.0",
         "guzzlehttp/guzzle": "^7.4.2",
         "firebase/php-jwt": "^6.4"
     },
-    "require-dev": {
-	},
-
+    "require-dev": {},
     "autoload": {
         "psr-4": {
             "Plokko\\Firebase\\": "src/"

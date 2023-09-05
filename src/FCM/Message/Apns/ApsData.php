@@ -28,7 +28,7 @@ class ApsData implements JsonSerializable
         /** @var string */
         $thread_id;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'alert' => $this->alert,
