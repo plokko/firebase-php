@@ -2,6 +2,7 @@
 namespace Plokko\Firebase;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use GuzzleHttp\ClientInterface;
@@ -125,7 +126,7 @@ class ServiceAccount
      * @return object
      */
     function decodeJWT($jwt,$public_key){
-        return JWT::decode($jwt,$public_key,['RS256']);
+        return JWT::decode($jwt,new Key($publicKey, 'RS256'));
     }
 
     function setCacheHandler(CacheItemPoolInterface $cache){
