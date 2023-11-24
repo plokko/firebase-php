@@ -14,10 +14,14 @@ class Database{
     private $client;
     private $debug=false;
 
-    function __construct(ServiceAccount $serviceAccount)
+    /**
+     * @param ServiceAccount $serviceAccount Service account
+     * @param string $databaseUrl specify database URL, if not set https://<project_id>.firebaseio.com/ will be used
+     */
+    function __construct(ServiceAccount $serviceAccount, $databaseUrl=null)
     {
         $this->serviceAccount = $serviceAccount;
-        $this->baseUrl = 'https://'.$serviceAccount->getProjectId().'.firebaseio.com/';
+        $this->baseUrl = $databaseUrl?: 'https://'.$serviceAccount->getProjectId().'.firebaseio.com/';
     }
 
     /**
