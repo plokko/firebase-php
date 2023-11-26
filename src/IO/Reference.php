@@ -7,10 +7,10 @@ use JsonSerializable;
 class Reference implements JsonSerializable
 {
     private
-        $db,
-        $path,
+    $db,
+    $path,
 
-        $data = null;
+    $data = null;
 
     function __construct(Database $db, $path)
     {
@@ -23,7 +23,7 @@ class Reference implements JsonSerializable
      * @param $path string optional sub path to concatenate
      * @return string
      */
-    function getPath($path = '')
+    function getPath($path = ''): string
     {
         return $this->path . '/' . trim($path, '/');
     }
@@ -45,7 +45,7 @@ class Reference implements JsonSerializable
      * @param $path
      * @return Reference
      */
-    function getReference($path)
+    function getReference($path): Reference
     {
         return new Reference($this->db, $this->path . '/' . $path);
     }
@@ -65,7 +65,7 @@ class Reference implements JsonSerializable
         $this->db->update($this->getPath($path), $value);
     }
 
-    function delete($path = '')
+    function delete($path = ''): void
     {
         $this->db->delete($this->getPath($path));
     }
@@ -83,7 +83,7 @@ class Reference implements JsonSerializable
     }
 
 
-    function toArray()
+    function toArray(): array
     {
         return $this->getData();
     }
