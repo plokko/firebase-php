@@ -18,7 +18,9 @@ class Request
         /**@var ServiceAccount**/
         $serviceAccount,
         /**@var ClientInterface|null **/
-        $client;
+        $clientConfig,
+	/**@var ClientInterface|null **/
+	$client;
 
     public
         /**@var boolean Flag for testing the request without actually delivering the message. **/
@@ -28,19 +30,34 @@ class Request
      * Request constructor.
      * @param bool $validate_only Flag for testing the request without actually delivering the message.
      */
-    function __construct(ServiceAccount $account,$validate_only=false,ClientInterface $client=null)
+    function __construct(ServiceAccount $account,$validate_only=false,ClientInterface $clientConfig=null)
     {
         $this->serviceAccount = $account;
-        $this->validate_only = $validate_only;
-        $this->client = $client;
+	$this->validate_only = $validate_only;
+	$this->clientConfig = $clientConfig;
+	$this->client = null;
     }
 
     /**
-     * Set a custom Http client (GuzzleHttp)
-     * @param ClientInterface $client Client that will be used in the request
+     * Set Http client config (GuzzleHttp)
+     * @param ClientInterface $clientConfig Client to copy Options from
      */
-    function setHttpClient(ClientInterface $client){
-        $this->client = $client;
+    function setHttpClient(ClientInterface $clientConfig){
+	$this->clientConfig = $clientConfig;
+	// Reset existing client
+	$this->client = null;
+    }
+
+    /**
+     * Get the http client instance
+     * @return \GuzzleHttp\ClientInterface
+     */
+    private function getClient(): \GuzzleHttp\ClientInterface
+    {
+        if (!$this->client) {
+	    $this->client = $this->serviceAccount->authorize('https://www.googleapis.com/auth/firebase.messaging',$this->clientConfig);
+        }
+        return $this->client;
     }
 
     function validateOnly($validate=true){
@@ -64,10 +81,9 @@ class Request
      * @internal Only use Message submit
      */
     public function submit(Message $message){
-        $payload = $this->getPayload($message);
+	$payload = $this->getPayload($message);
 
-        // Add OAuth 2.0 token to the request
-        $client = $this->serviceAccount->authorize('https://www.googleapis.com/auth/firebase.messaging',$this->client);
+	$client = $this->getClient();
 
         // FCM v1 Api URL
         $apiUrl = 'https://fcm.googleapis.com/v1/projects/'.$this->serviceAccount->getProjectId().'/messages:send';

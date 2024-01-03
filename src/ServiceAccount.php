@@ -59,9 +59,9 @@ class ServiceAccount
     }
 
     /**
-     * Authorize an http request
+     * Create a Http Client with required Authorization
      * @param array|string $scope Scope of the requested credentials @see https://developers.google.com/identity/protocols/googlescopes
-     * @param ClientInterface|null $request
+     * @param ClientInterface|null $request Copy options from this client
      * @return ClientInterface
      */
     function authorize($scope,ClientInterface $request=null){
