@@ -40,7 +40,7 @@ class ApnsConfig implements JsonSerializable
         $this->{$k}=$v;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return array_filter([
             'headers' => $this->headers,
